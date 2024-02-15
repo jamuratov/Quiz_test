@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.quiz_test.R
 import com.example.quiz_test.databinding.FragmentBasbetFragmentBinding
 
@@ -18,7 +19,7 @@ class Basbet : Fragment() {
         binding = FragmentBasbetFragmentBinding.inflate(inflater, container, false)
 
         binding.testtBaslaw.setOnClickListener(){
-            it.findNavController().navigate(R.id.action_basbet_to_sorawlar)
+            findNavController().navigate(R.id.action_basbet_to_sorawlar)
         }
         return binding.root
     }

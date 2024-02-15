@@ -1,44 +1,43 @@
 package com.example.quiz_test.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import com.example.quiz_test.Adapters.Sorawlar_Adapter
-import com.example.quiz_test.Dao.Dao
-import com.example.quiz_test.Data.QuizTestDatabase
-import com.example.quiz_test.R
+import com.example.quiz_test.Adapters.QuestionAdapter
+import com.example.quiz_test.Dao.QuestionDao
+import com.example.quiz_test.Data.QuestionDatabase
 import com.example.quiz_test.databinding.FragmentSorawlarFragmentBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class Sorawlar : Fragment() {
     private lateinit var binding: FragmentSorawlarFragmentBinding
-    private val adapter = Sorawlar_Adapter()
-    private lateinit var Dao: Dao
+    private val adapter = QuestionAdapter()
+    private lateinit var db: QuestionDatabase
+    private lateinit var dao: QuestionDao
+    private val list = mutableListOf<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSorawlarFragmentBinding.bind(view)
-        binding.goTest.setOnClickListener {
-            it.findNavController().navigate(R.id.action_sorawlar_to_test)
+
+        db = QuestionDatabase.getInstance(requireContext())
+        dao = db.getAllQuestionDao()
+
+/*        binding.goTest.setOnClickListener {
+            findNavController().navigate(R.id.action_sorawlar_to_test)
+        }*/
+
+        repeat(50) {
+            list.add("What is your name ?")
         }
-        Dao = QuizTestDatabase.getInstance(requireContext()).getDao()
+
+        Log.d("TTT",list.toString())
         binding.apply {
-            lifecycleScope.launch {
-                try{
-                    val response = Dao.getAllQuestion()
-                    withContext(Dispatchers.Main) {
-                        adapter.models = response
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(),e.localizedMessage,Toast.LENGTH_SHORT).show()
-                }
-            }
-            resyclerview.adapter = adapter
+            recyclerView.adapter = adapter
+            adapter.models = list
+
+/*            Log.d("TTT",dao.getAllQuestion().toMutableList().toString())
+            adapter.models = dao.getAllQuestion().toMutableList()*/
         }
     }
 }

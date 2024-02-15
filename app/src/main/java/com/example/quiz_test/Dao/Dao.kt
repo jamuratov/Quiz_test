@@ -5,6 +5,6 @@ import com.example.quiz_test.Data.Questions
 
 @Dao()
 interface Dao {
-    @androidx.room.Query("SELECT * FROM questions")
+    @androidx.room.Query("SELECT * FROM quiz_test")
     suspend fun getAllQuestion(): List<Questions>
 }

@@ -29,6 +29,7 @@ abstract class QuizTestDatabase : RoomDatabase() {
             return db
         }
     }
-    abstract fun getDao():Dao
+
+    abstract fun getDao(): Dao
 }
 
