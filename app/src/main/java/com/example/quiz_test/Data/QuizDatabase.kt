@@ -6,28 +6,29 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.quiz_test.Dao.QuestionDao
 
-@Database(entities = [QuestionData::class], version = 1)
-abstract class QuestionDatabase : RoomDatabase() {
+@Database(entities = [QuestionData::class], version = 2)
+abstract class QuizDatabase : RoomDatabase() {
 
     companion object {
-        private var instance : QuestionDatabase? = null
+        private var INSTANCE: QuizDatabase? = null
 
-        fun getInstance(context: Context) : QuestionDatabase {
-            instance?.let {
+        fun getInstance(context: Context): QuizDatabase {
+            INSTANCE?.let {
                 return it
             }
 
-            val db = Room.databaseBuilder(context, QuestionDatabase::class.java,"question.db")
+            val db = Room.databaseBuilder(
+                context, QuizDatabase::class.java, "question.db"
+            )
                 .createFromAsset("question.db")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
 
-            instance = db
+            INSTANCE = db
             return db
         }
     }
 
-    abstract fun getAllQuestionDao() : QuestionDao
-
+    abstract fun getQuestionsDao(): QuestionDao
 }
