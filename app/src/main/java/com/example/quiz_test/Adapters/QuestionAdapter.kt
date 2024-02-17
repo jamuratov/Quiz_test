@@ -14,6 +14,10 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>
         ViewHolder(binding.root) {
         fun bind(questionData: QuestionData) {
             binding.questionName.text = questionData.name
+            binding.btnOptionOne.text = questionData.answer1
+            binding.btnOptionTwo.text = questionData.answer2
+            binding.btnOptionThree.text = questionData.answer3
+            binding.btnOptionFour.text = questionData.answer4
         }
     }
 

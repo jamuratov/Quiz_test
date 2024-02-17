@@ -14,15 +14,6 @@
             app:destination="@id/sorawlar" />
     </fragment>
     <fragment
-        android:id="@+id/test"
-        android:name="com.example.quiz_test.ui.Test"
-        tools:layout="@layout/fragment_test"
-        android:label="Test" >
-        <action
-            android:id="@+id/action_test_to_duris_juwaplar"
-            app:destination="@id/duris_juwaplar" />
-    </fragment>
-    <fragment
         android:id="@+id/duris_juwaplar"
         android:name="com.example.quiz_test.ui.Duris_juwaplar"
         android:label="Duris_juwaplar" >
@@ -36,7 +27,7 @@
         android:name="com.example.quiz_test.ui.Sorawlar"
         android:label="Sorawlar" >
         <action
-            android:id="@+id/action_sorawlar_to_test"
-            app:destination="@id/test" />
+            android:id="@+id/action_sorawlar_to_duris_juwaplar"
+            app:destination="@id/duris_juwaplar" />
     </fragment>
 </navigation>

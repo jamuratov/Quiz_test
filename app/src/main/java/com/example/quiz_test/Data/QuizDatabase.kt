@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.quiz_test.Dao.QuestionDao
 
-@Database(entities = [QuestionData::class], version = 2)
+@Database(entities = [QuestionData::class], version = 3)
 abstract class QuizDatabase : RoomDatabase() {
 
     companion object {
@@ -18,9 +18,9 @@ abstract class QuizDatabase : RoomDatabase() {
             }
 
             val db = Room.databaseBuilder(
-                context, QuizDatabase::class.java, "question.db"
+                context, QuizDatabase::class.java, "questionss.db"
             )
-                .createFromAsset("question.db")
+                .createFromAsset("questionss.db")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()

@@ -7,7 +7,6 @@ import com.example.quiz_test.Data.QuestionData
 
 @Dao()
 interface QuestionDao {
-
     @Query("SELECT * FROM quiz_test")
     suspend fun getQuestions(): List<QuestionData>
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.quiz_test.Adapters.QuestionAdapter
 import com.example.quiz_test.Dao.QuestionDao
 import com.example.quiz_test.Data.QuizDatabase
@@ -21,6 +22,10 @@ class Sorawlar : Fragment(R.layout.fragment_sorawlar_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSorawlarFragmentBinding.bind(view)
+
+        binding.btnGo.setOnClickListener {
+            findNavController().navigate(R.id.action_sorawlar_to_duris_juwaplar)
+        }
 
         db = QuizDatabase.getInstance(requireContext())
         dao = db.getQuestionsDao()
